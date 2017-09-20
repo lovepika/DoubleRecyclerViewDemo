@@ -23,11 +23,10 @@ import me.microcool.doublerecyclerviewdemo.bean.ChildInfo;
 public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.ViewHolder> {
 
     private Context context;
-    private List<ChildInfo> list;
+    private List<ChildInfo> list; // List 集合（里面是image+text）
 
     /**
      * 构造函数
-     *
      * @param context
      * @param list
      */
@@ -39,8 +38,7 @@ public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.menu_info_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override

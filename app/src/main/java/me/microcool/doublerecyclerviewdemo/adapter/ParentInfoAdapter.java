@@ -22,7 +22,7 @@ import me.microcool.doublerecyclerviewdemo.bean.ParentInfo;
 public class ParentInfoAdapter extends RecyclerView.Adapter<ParentInfoAdapter.ViewHolder> {
 
     private Context context;
-    private List<ParentInfo> list;//父层列表
+    private List<ParentInfo> list;//父层列表 （里面是 text + 子List（子list是image+text））
 
     public ParentInfoAdapter(Context context, List<ParentInfo> list) {
         this.context = context;
@@ -40,7 +40,8 @@ public class ParentInfoAdapter extends RecyclerView.Adapter<ParentInfoAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTitle.setText("Item " + position);
-        //把内层的RecyclerView 在 外层的onBindViewHolder
+        //把内层的RecyclerView 绑定在外层的onBindViewHolder
+        // 先判断一下是不是已经设置了Adapter
         if (holder.mRecyclerView.getAdapter() == null) {
             holder.mRecyclerView.setAdapter(new ChildInfoAdapter(context, list.get(position).getMenuList()));
         } else {
@@ -59,7 +60,7 @@ public class ParentInfoAdapter extends RecyclerView.Adapter<ParentInfoAdapter.Vi
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTitle;//标题
-        RecyclerView mRecyclerView;//子 RecyclerView
+        RecyclerView mRecyclerView; // 父层的 RecyclerView
 
         public ViewHolder(View itemView) {
             super(itemView);
